@@ -61,7 +61,7 @@ export default function DropDown({ vibe, setVibe }: DropDownProps) {
                       "px-4 py-2 text-sm w-full text-left flex items-center space-x-2 justify-between"
                     )}
                   >
-                    <span>{vibeItem}</span>
+                    <span>{vibeItem === 'Professional' ? '专业' : (vibeItem === 'Casual' ? '随意' : '幽默')}</span>
                     {vibe === vibeItem ? (
                       <CheckIcon className="w-4 h-4 text-bold" />
                     ) : null}
