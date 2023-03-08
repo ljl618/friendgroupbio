@@ -32,11 +32,12 @@ const Home: NextPage = () => {
   //   bio.slice(-1) === "." ? "" : "."
   // }`;
 
-  const prompt = `你是个诗人，情感专家，人生导师，生成2个${vibe}的微信朋友圈，没有标签，明确标记为“1.”和“2.”。${
+  const prompt = `${
     vibe === "Funny"
-      ? "确保每条朋友圈中国式幽默."
-      : null
+      ? "你是段子手，神吐槽手，脱口秀演员，口才达人，幽默家，小品演员，"
+      : "你是个诗人，情感专家，人生导师，"
   }
+    生成2个${vibe}的微信朋友圈，没有标签，明确标记为“1.”和“2.”。
     每条朋友圈至少包含一个表情，每条朋友圈不超过160个字符，每条朋友圈的句子都是在微信朋友圈中找到的短句，并基于这个上下文：${bio}${
       bio.slice(-1) === "." ? "" : "."
   }
@@ -96,15 +97,16 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title> Generator</title>
+        <title>发个圈</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20">
         <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900">
-          Generate something using chatGPT
+          生成朋友圈
         </h1>
+        <h3 className="text-2xl text-slate-500 sm:mt-10">基于gpt-3.5-turbo</h3>
         <div className="max-w-xl w-full">
           <div className="flex mt-10 items-center space-x-3">
             <Image
@@ -115,11 +117,10 @@ const Home: NextPage = () => {
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              Copy your current prompts{" "}
+              写点什么...{" "}
               <span className="text-slate-500">
-                (or write a few sentences about yourself)
+                {/* (or write a few sentences about yourself) */}
               </span>
-              .
             </p>
           </div>
           <textarea
@@ -128,12 +129,12 @@ const Home: NextPage = () => {
             rows={4}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "e.g. Senior Developer Advocate @vercel. Tweeting about web development, AI, and React / Next.js. Writing nutlope.substack.com."
+              "."
             }
           />
           <div className="flex mb-5 items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your vibe.</p>
+            <p className="text-left font-medium">选择风格</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
@@ -144,7 +145,7 @@ const Home: NextPage = () => {
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
-              Generate &rarr;
+              生成 &rarr;
             </button>
           )}
           {loading && (
